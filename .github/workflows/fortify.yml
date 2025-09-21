@@ -17,7 +17,7 @@ jobs:
       SSC_PV: "10000"
       SSC_URL: "https://localhost:8443/ssc"
       SAST_URL: "https://localhost:8444/scancentral-ctrl"
-      SSC_TOKEN: "ff170dad-1f45-4833-98d3-22087a117a63"  # store in GitHub secrets
+      SSC_TOKEN: "4f2dff5a-12e9-4457-bbae-6fb88cce362d"  # store in GitHub secrets
  
     steps:
       - name: Checkout repository
