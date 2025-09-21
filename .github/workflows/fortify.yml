@@ -1,48 +1,5 @@
 name: Fortify SAST (ScanCentral)
- 
-on:
-  workflow_dispatch:
-  push:
-    branches: [ main ]
-  pull_request:
- 
-jobs:
-  fortify-sast-scancentral:
-    runs-on: [self-hosted, windows, scancentral]  # your runner labels
- 
-    env:
-      SCANCENTRAL_BUILD_OPTS: "-bt none"
-      BUILD_ID: "1.0"
-      SSC_APP: "JavaWebApp"
-      SSC_PV: "10001"
-      SSC_URL: "https://localhost:8443/ssc"
-      SAST_URL: "https://localhost:8444/scancentral-ctrl"
-      SSC_TOKEN: "4f2dff5a-12e9-4457-bbae-6fb88cce362d"
- 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
- 
-      - name: Verify ScanCentral is available (optional)
-        shell: pwsh
-        run: |
-          where.exe scancentral* | ForEach-Object { "Found: $_" }
-          scancentral -version
- 
-      - name: Run ScanCentral (start + upload)
-        shell: pwsh
-        run: |
-          scancentral -debug `
-            -url $env:SAST_URL `
-            -ssctoken $env:SSC_TOKEN `
-            start -upload `
-            -versionid $env:SSC_PV `
-            $env:SCANCENTRAL_BUILD_OPTS `
-            -ssc-upload-token $env:SSC_TOKEN
 
-
-name: Fortify SAST (ScanCentral)
- 
 on:
   workflow_dispatch:
   push:
